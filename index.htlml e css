@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive p5.js App</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #8e44ad, #3498db);
+            color: white;
+        }
+
+        h1 {
+            margin: 20px 0;
+            font-size: calc(1.5rem + 1vw);
+            text-align: center;
+        }
+
+        canvas {
+            border: 5px solid white;
+            border-radius: 10px;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: calc(0.8rem + 0.5vw);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Responsive p5.js Canvas</h1>
+    <footer>Resize the window to see the canvas adapt!</footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+    <script>
+        let canvas;
+
+        function setup() {
+            canvas = createCanvas(windowWidth * 0.8, windowHeight * 0.6);
+            canvas.parent(document.body);
+        }
+
+        function draw() {
+            background(50, 100, 200);
+            fill(255, 255, 0);
+            noStroke();
+            ellipse(mouseX, mouseY, 50, 50);
+            fill(255);
+            textAlign(CENTER, CENTER);
+            textSize(20);
+            text("Move your mouse!", width / 2, height / 2);
+        }
+
+        function windowResized() {
+            resizeCanvas(windowWidth * 0.8, windowHeight * 0.6);
+        }
+    </script>
+</body>
+</html>
