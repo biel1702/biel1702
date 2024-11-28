@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards Interativos</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+        #defaultCanvas0 {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+<script>
+    const flashcards = [
+        { question: "Qual é a capital da França?", answer: "Paris" },
+        { question: "Quanto é 7 x 8?", answer: "56" },
+        { question: "Quem escreveu 'Dom Quixote'?", answer: "Miguel de Cervantes" },
+        { question: "Qual é o maior planeta do Sistema Solar?", answer: "Júpiter" },
+        { question: "Qual é a fórmula química da água?", answer: "H2O" },
+        { question: "Quem pintou a Mona Lisa?", answer: "Leonardo da Vinci" },
+        { question: "Qual é o idioma mais falado no mundo?", answer: "Mandarim" },
+        { question: "Em que ano o homem pisou na Lua?", answer: "1969" },
+        { question: "Qual é a moeda oficial do Japão?", answer: "Iene" },
+        { question: "Quem desenvolveu a teoria da relatividade?", answer: "Albert Einstein" }
+    ];
+
+    let currentCard = 0;
+    let showAnswer = false;
+
+    function setup() {
+        createCanvas(400, 300);
+        textAlign(CENTER, CENTER);
+    }
+
+    function draw() {
+        background(255);
+        fill(50);
+        rect(20, 20, width - 40, height - 40, 15);
+
+        fill(255);
+        textSize(20);
+        text(
+            showAnswer ? flashcards[currentCard].answer : flashcards[currentCard].question,
+            width / 2,
+            height / 2,
+            width - 60,
+            height - 60
+        );
+
+        fill(0);
+        textSize(14);
+        text("← Anterior   |   Próximo →", width / 2, height - 20);
+    }
+
+    function mousePressed() {
+        if (mouseX > 20 && mouseX < width - 20 && mouseY > 20 && mouseY < height - 20) {
+            showAnswer = !showAnswer;
+        }
+    }
+
+    function keyPressed() {
+        if (keyCode === LEFT_ARROW) {
+            currentCard = (currentCard - 1 + flashcards.length) % flashcards.length;
+            showAnswer = false;
+        } else if (keyCode === RIGHT_ARROW) {
+            currentCard = (currentCard + 1) % flashcards.length;
+            showAnswer = false;
+        }
+    }
+</script>
+</body>
+</html>
